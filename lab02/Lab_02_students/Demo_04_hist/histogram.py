@@ -1,0 +1,19 @@
+# https://opencv-python-tutroals.readthedocs.io/en/latest/py_tutorials/py_imgproc/py_histograms/py_2d_histogram/py_2d_histogram.html#twod-histogram
+
+import cv2
+import numpy as np
+
+from matplotlib import pyplot as plt
+
+#img = cv2.imread('home.jpg')
+img = cv2.imread('messi5.jpg')
+hsv = cv2.cvtColor(img,cv2.COLOR_BGR2HSV)
+
+hist = cv2.calcHist([hsv], [0, 1], None, [180, 256], [0, 180, 0, 256])
+
+color = ('b', 'g', 'r')
+for i,col in enumerate(color):
+    histr = cv2.calcHist([img],[i],None,[256],[0,256])
+    plt.plot(histr,color = col)
+    plt.xlim([0,256])
+plt.show()
